@@ -49,8 +49,8 @@ app.get('/ffmpeg-stop-stream/:id',async (req,res)=> {
     }
 });
 function runStreamForward(streamId,callback) {
-    //const cmd=`ffmpeg -protocol_whitelist pipe,udp,rtp -i - -c:v copy -flags:v +global_header -bsf:v "dump_extra=freq=keyframe" -bf 0 -an -tune zerolatency -f rtp rtp://127.0.0.1:${5000+streamId*4}?pkt_size=1200 -c:a copy -vn -f rtp rtp://127.0.0.1:${5000+streamId*4-2}?pkt_size=1200`;
-    const cmd=`ffmpeg -protocol_whitelist pipe,udp,rtp -i - -c:v libx264  -vf scale="-1:240" -b:v 300k -flags:v +global_header -bsf:v "dump_extra=freq=keyframe" -bf 0 -an -tune zerolatency -f rtp rtp://127.0.0.1:${5000+streamId*4}?pkt_size=1200 -b:a 64k -ar 48000  -async 10000 -ac 2 -c:a libopus  -vn -f rtp rtp://127.0.0.1:${5000+streamId*4-2}?pkt_size=1200`;
+    const cmd=`ffmpeg -protocol_whitelist pipe,udp,rtp -i - -c:v copy -flags:v +global_header -bsf:v "dump_extra=freq=keyframe" -bf 0 -an -tune zerolatency -f rtp rtp://127.0.0.1:${5000+streamId*4}?pkt_size=1200 -c:a copy -vn -f rtp rtp://127.0.0.1:${5000+streamId*4-2}?pkt_size=1200`;
+    //const cmd=`ffmpeg -protocol_whitelist pipe,udp,rtp -i - -c:v libx264  -vf scale="-1:240" -b:v 300k -flags:v +global_header -bsf:v "dump_extra=freq=keyframe" -bf 0 -an -tune zerolatency -f rtp rtp://127.0.0.1:${5000+streamId*4}?pkt_size=1200 -b:a 64k -ar 48000  -async 10000 -ac 2 -c:a libopus  -vn -f rtp rtp://127.0.0.1:${5000+streamId*4-2}?pkt_size=1200`;
     console.log(cmd);
     const p=exec(cmd,{detached:false} as any);
     p.stdin.write(`v=0
