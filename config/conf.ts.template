@@ -1,0 +1,19 @@
+export const conf = {
+    "port": 5533,
+    "ssl":{
+        "key":"keys/privkey.pem",
+        "cert":"keys/fullchain.pem"
+    },
+    "iceServers": [
+        {
+            "urls": ["turn:__TURN_IP__:__TURN_PORT__"],
+            "username": "__TURN_USER__",
+            "credential": "__TURN_PASS__"
+        },
+        {
+            "urls": ["stun:__TURN_IP__:__TURN_PORT__"],
+            "username": "__TURN_USER__",
+            "credential": "__TURN_PASS__"
+        }
+    ]
+};

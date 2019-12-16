@@ -1,0 +1,30 @@
+{
+  "name": "JanusTest",
+  "version": "1.0.0",
+  "description": "JanusTest",
+  "repository": "https://github.com/anovikov1984/JanusTest",
+  "main": "janusTestServer.ts",
+  "author": "Codeda",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/node": "^10.12.9",
+    "ts-node": "^7.0.1",
+    "tslib": "^1.9.3",
+    "typescript": "^3.1.6"
+  },
+  "dependencies": {
+    "console-stamp": "^0.2.9",
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "https": "^1.0.0"
+  },
+  "scripts": {
+    "start": "ts-node ./janusTestServer.ts  >~/janusTestServer.log 2>&1 &",
+    "service": "ts-node ./janusTestServer.ts  >~/janusTestServer.log 2>&1",
+    "test": "ts-node ./janusTestServer.ts",
+    "kill": "ps -ef | grep janusTestServer.ts | grep -v grep | awk '{print $2}' | xargs kill -9",
+    "copylog": "if [ -f ~/janusTestServer.log ]; then cp ~/janusTestServer.log ~/janusTestServer-$(date +%Y-%m-%d-%H-%M).log; fi",
+    "restart": "npm run kill;npm run copylog;npm start",
+    "killffmpegs": "ps -ef | grep ffmpeg | grep -v grep | awk '{print $2}' | xargs kill -9"
+  }
+}

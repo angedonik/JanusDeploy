@@ -1,0 +1,15 @@
+# docker-compose.yml
+version: '3'
+services:
+  janus-test:
+    build:
+      context: ./
+      args:
+        TURN_IP: 18.196.113.204
+        TURN_USER: testUser
+        TURN_PASSWORD: testPassword
+        TURN_PORT: 3478
+        TOKEN: oriejVlukKrlx7t2MjtcdSxQdR4IoPfD
+    restart: unless-stopped
+    container_name: janus-test
+    network_mode: host
